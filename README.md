@@ -312,6 +312,16 @@ implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
 
 ## 251224 수 ##
 
+1. vmware 우분투 /opt 경로에 현재 레파지토리를 클론하세요
+https://github.com/JunHyeongYun/demo1.git
+풀이 :
+/opt 경로에서 sudo git clone https://github.com/JunHyengYun/demo1.git 하기
+그 다음 만약 소스코드에 변경사항이 있다면 프로젝트 루트 디렉토리인 demo1 디렉토리로 이동하셔서 git pull origin main 명령어를 입력하여 최신 코드를 받기
+
+3. 빌드를 하여 빌드 산출물 .war 파일을 톰캣에 webapps 디렉토리로 옮긴 후 톰캣을 재시작하여 <vmware우분투IP:8080> => 브라우저 여셔서 왼쪽 양식대로 입력하셔서 웹 페이지가 정상적으로 뜨면 성공
+
+war 파일 옮길 때 cp or mv 명령어 사용
+권한 문제는 chown, chmod 사용
 
 
 
