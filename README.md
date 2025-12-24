@@ -300,6 +300,22 @@ https://congsong.tistory.com/62
 
 ===================================================================================
 
+## 251222 월 ##
+자바 설치
+
+dependencies 블럭안에 
+
+implementation 'javax.servlet:jstl'
+implementation "org.apache.tomcat.embed:tomcat-embed-jasper"  
+
+====================================================================================
+
+## 251224 수 ##
+
+
+
+
+
 
 
 
