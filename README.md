@@ -323,13 +323,12 @@ https://github.com/JunHyeongYun/demo1.git
 war 파일 옮길 때 cp or mv 명령어 사용
 권한 문제는 chown, chmod 사용
 
-====================================================================================
-
+==================================================================================
 ## 251229 월 ##
 
 ====================================================================================
 
-# 251231 수 ##
+## 251231 수 ##
 
 - nginx 설치
 sudo apt update
@@ -382,6 +381,37 @@ location / { => 모든 요청
 1. 톰캣 context.xml 쪽에 jndi를 설정한다
 2. 설정을 마친 뒤 프로퍼티즈에 지정한 네이밍을 명시한다.
 3. 재빌드후 재배포 (반드시 톰캣을 종료하고 배포를 진행할 것)
+
+
+====================================================================================
+ ## 260105 월 ##
+
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.datasource.url=jdbc:mariadb://192.168.118.128:3306/board
+spring.datasource.username=root
+spring.datasource.password=1234
+
+name="jdbc/Mariadb"
+
+
+./gradlew
+sudo cp /opt/demo1/build/libs/ROOT.war /opt/tomcat9/webapps
+sudo systemctl restart tomcat
+--------------------------------------------------------------------------
+과제
+
+지금까지 배포한 과정을 쉘 스크립트로 작성하여 쉘 스크립트를 실행한 것만으로 배포가 완료되게 하세요.
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 
