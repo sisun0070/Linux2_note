@@ -327,7 +327,61 @@ war 파일 옮길 때 cp or mv 명령어 사용
 
 ## 251229 월 ##
 
+====================================================================================
 
+# 251231 수 ##
+
+- nginx 설치
+sudo apt update
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+nginx -v
+
+웹 서버를 사용하는 이유
+1. was의 부담을 줄여주기 위해 사용한다.
+2. 보안기능을 제공한다.
+   -> 웹서버는 웹 페이지에 대한 접근을 제어할 수 있다.
+   -> SSL/TLS 프로토콜을 사용해서 데이터를 암호화하고 엑세스 제어 방화벽등의 보안 기능을 제공하여 웹 사이트를 보호한다.
+3. 웹 서버는 대부분 비동기 처리 방식을 사용하여 높은 성능을 제공한다.
+   -> Apache, Nginx 등의 웹 서버는 이벤트 기반, 멀티 프로세싱, 스레드 풀 등의 기술을 사용하여 수천 대의 클리이언트로 요청을 동시에 처리 가능하다.
+
+프록시란(froxy)?
+: 대리자라는 사전적인 뜻을 가짐
+- 서버와 서버사이의 중재자 역할을 함
+- 프록시를 쓰는 이유 : 보안상의 이유로 직접 통신할 수 없는 두 지점사이의 대리로 통신을 수행하도록 함
+
+프록시의 두 종류 (리버스 프록시, 포워드 프록시)
+- 프록시 서버는 어느 방향으로 데이터를 제공하느냐에 따라 구분함
+
+- 포워드 프록시 : 학교, 기업체 등과 같은 기과에서 해당 기관에 속한 사람들이 제한적인 인터넷 사용을 위해 방화벽을 사용하는데 포워드 프록시 서버는 방화벽과 같은 개념으로 제한을 하기 위해 사용됨. + 특정 사이트에 접속하는 것을 막을 수 있음(룰을 추가해야함)
+
+- 리버스 프록시 : was 앞에 놓여 있는 것.
+  클라이언트가 서버에 접근할 때 웹 서버에 요청하는 것이 아닌 프록시로 요청을 하고 프록시가 서버로부터 데이터를 가져오는 방식
+  클라이언트쪽으로 데이터를 response 하는게 포워드라면 서버쪽으로 request를 하는게 리버스 프록시
+
+/ect/nginx/sites/available/default
+
+location / { => 모든 요청
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                proxy_pass http://192.168.189.128:8080; => 클라이언트의 요청을 전달할 백엔드 서버를 명시
+                proxy_set_header Host $host; => 클라이언트가 요청한 도메인 이름 전달
+                proxy_set_header X-Real-IP $remote_addr; => 클라이언트가 타고 들어온 ip주소(실제 클라이언트 ip)
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme; => http 요청인지 https요청인지 알려줌
+        }
+
+톰캣 JNDI 설정
+- Java Naming and Directory Interface 약자임
+- 이름지정 및 디렉토리 서비스에서 제공하는 데이터 및 객체를 참조하기 위한 자바 API임
+- 데이터베이스 커넥션을 미리 만들어서 저장해두고 필요할 때 저장된 공간을 가져다 쓰고 반환하는 기법
+
+
+퀴즈
+1. 톰캣 context.xml 쪽에 jndi를 설정한다
+2. 설정을 마친 뒤 프로퍼티즈에 지정한 네이밍을 명시한다.
+3. 재빌드후 재배포 (반드시 톰캣을 종료하고 배포를 진행할 것)
 
 
 
